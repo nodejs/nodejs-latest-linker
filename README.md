@@ -1,6 +1,6 @@
 # nodejs-latest-linker
 
-**An application to create latest-X symlinks at https://nodejs.org/download/release/ after each new releases**
+**An application to create latest-X symlinks at https://nodejs.org/download/release/ after each new release**
 
 Also works for iojs.org.
 
