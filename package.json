@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-latest-linker",
+  "version": "1.0.0",
+  "description": "An application to create latest-X symlinks at https://nodejs.org/download/release/ after each new releases",
+  "main": "latest-linker.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodejs/nodejs-latest-linker.git"
+  },
+  "author": "Rod <rod@vagg.org> (http://r.va.gg/)",
+  "license": "MIT",
+  "dependencies": {
+    "map-async": "~0.1.1",
+    "semver": "~5.3.0"
+  },
+  "bin": {
+    "nodejs-latest-linker": "./latest-linker.js"
+  },
+  "preferGlobal": true
+}
