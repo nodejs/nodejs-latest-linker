@@ -10,6 +10,7 @@ const fs       = require('fs')
     , ltsNames = {
           4 : 'argon'
         , 6 : 'boron'
+        , 8 : 'carbon'
       }
 
 if (process.argv.length < 3)
