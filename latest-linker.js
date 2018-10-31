@@ -11,6 +11,7 @@ const fs       = require('fs')
           4 : 'argon'
         , 6 : 'boron'
         , 8 : 'carbon'
+        , 10 : 'dubnium'
       }
 
 if (process.argv.length < 3)
