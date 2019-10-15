@@ -12,6 +12,7 @@ const fs       = require('fs')
         , 6 : 'boron'
         , 8 : 'carbon'
         , 10 : 'dubnium'
+        , 12 : 'erbium'
       }
 
 if (process.argv.length < 3)
