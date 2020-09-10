@@ -45,7 +45,7 @@ function afterMap (err, allDirs) {
     .map((d) => path.basename(d.d))
     .map((d) => {
       try {
-        return semver(d)
+        return semver.parse(d)
       } catch (e) {}
     })
     .filter(Boolean)
