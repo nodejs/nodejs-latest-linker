@@ -5,7 +5,7 @@
   "main": "latest-linker.js",
   "scripts": {
     "lint": "standard",
-    "test": "npm run lint"
+    "test": "npm run lint && tap test.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   },
   "preferGlobal": true,
   "devDependencies": {
+    "tap": "^14.10.8",
     "standard": "^14.3.4"
   }
 }
