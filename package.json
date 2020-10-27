@@ -1,6 +1,6 @@
 {
   "name": "nodejs-latest-linker",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "description": "An application to create latest-X symlinks at https://nodejs.org/download/release/ after each new release",
   "main": "latest-linker.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "semver": "^7.3.2"
   },
   "bin": {
-    "nodejs-latest-linker": "./latest-linker.js"
+    "nodejs-latest-linker": "latest-linker.js"
   },
   "preferGlobal": true,
   "devDependencies": {
