@@ -13,7 +13,8 @@ const ltsNames = {
   8: 'carbon',
   10: 'dubnium',
   12: 'erbium',
-  14: 'fermium'
+  14: 'fermium',
+  16: 'gallium'
 }
 
 if (process.argv.length < 3) {
