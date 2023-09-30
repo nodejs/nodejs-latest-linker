@@ -14,7 +14,6 @@
   "author": "Rod <rod@vagg.org> (http://r.va.gg/)",
   "license": "MIT",
   "dependencies": {
-    "map-async": "^0.1.1",
     "semver": "^7.3.2"
   },
   "bin": {
@@ -22,7 +21,7 @@
   },
   "preferGlobal": true,
   "devDependencies": {
-    "tap": "^14.10.8",
-    "standard": "^14.3.4"
+    "standard": "^17.1.0",
+    "tap": "^18.4.0"
   }
 }
