@@ -12,7 +12,16 @@ if (process.argv.length < 3) {
 }
 
 const dir = path.resolve(process.argv[2])
-const docsDir = process.argv[3] && path.resolve(process.argv[3]);
+const docsDir = process.argv[3] && path.resolve(process.argv[3])
+
+async function validateDocsLink (src) {
+  try {
+    const stat = await fs.stat(src)
+    return stat.isDirectory()
+  } catch {
+    return false
+  }
+}
 
 (async function main () {
   /* c8 ignore next 3 */
@@ -26,7 +35,7 @@ const docsDir = process.argv[3] && path.resolve(process.argv[3]);
   }
 
   const allDirs = (await fs.readdir(dir, { withFileTypes: true })).filter((d) => d.isDirectory()).map((d) => d.name)
-  const linker = new Linker({ baseDir: dir, docsDir })
+  const linker = new Linker({ baseDir: dir, docsDir, validateDocsLink })
   const links = await linker.getLinks(allDirs, fs.readdir)
   for (const [dest, src] of links) {
     await fs.unlink(dest).catch(() => {})
