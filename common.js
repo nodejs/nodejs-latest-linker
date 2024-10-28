@@ -20,9 +20,11 @@ class Linker {
   #dirs = []
   #baseDir
   #docsDir
-  constructor ({ baseDir, docsDir }) {
+  #validateDocsLink
+  constructor ({ baseDir, docsDir, validateDocsLink }) {
     this.#baseDir = baseDir
     this.#docsDir = docsDir
+    this.#validateDocsLink = validateDocsLink ?? (() => true)
   }
 
   async getLinks (allDirectories, readDir) {
@@ -38,7 +40,7 @@ class Linker {
       })
       .filter(Boolean)
 
-    this.#makeDocsLinks(allDirs.map((d) => d.raw))
+    await this.#makeDocsLinks(allDirs.map((d) => d.raw))
 
     this.#dirs = allDirs.filter((d) => semver.satisfies(d, '~0.10 || ~0.12 || >= 1.0')).map((d) => d.raw)
     this.#dirs.sort((d1, d2) => semver.compare(d1, d2))
@@ -70,7 +72,7 @@ class Linker {
     return this.#links
   }
 
-  #makeDocsLinks (versions) {
+  async #makeDocsLinks (versions) {
     if (!this.#docsDir) {
       return
     }
@@ -78,7 +80,9 @@ class Linker {
     for (const version of versions) {
       const src = path.join(this.#baseDir, version, 'docs')
       const dst = path.join(this.#docsDir, version)
-      this.#links.set(dst, src)
+      if (await this.#validateDocsLink(src)) {
+        this.#links.set(dst, src)
+      }
     }
   }
 
