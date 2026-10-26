@@ -14,7 +14,8 @@ const ltsNames = {
   18: 'hydrogen',
   20: 'iron',
   22: 'jod',
-  24: 'krypton'
+  24: 'krypton',
+  26: 'lithium'
 }
 
 class Linker {
