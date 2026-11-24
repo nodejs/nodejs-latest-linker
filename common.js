@@ -45,14 +45,17 @@ class Linker {
 
     await this.#makeDocsLinks(allDirs.map((d) => d.raw))
 
-    this.#dirs = allDirs.filter((d) => semver.satisfies(d, '~0.10 || ~0.12 || >= 1.0')).map((d) => d.raw)
+    this.#dirs = allDirs.filter((d) => semver.satisfies(d, '~0.10 || ~0.12 || >= 1.0', { includePrerelease: true })).map((d) => d.raw)
     this.#dirs.sort((d1, d2) => semver.compare(d1, d2))
 
     this.#link('0.10')
     this.#link(0.12)
 
+    // Stop looking for links at one semver after the highest mapped LTS line.
+    const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })
+    const ceiling = Number(Object.keys(ltsNames).sort(collator.compare).at(-1)) + 1
     for (let i = 1; ; i++) {
-      if (!this.#link(i) && i >= 4) {
+      if (!this.#link(i) && i >= ceiling) {
         break
       }
     }
@@ -92,7 +95,7 @@ class Linker {
   #link (version) {
     const line = version && `${version}.x`
     const range = version ? `${Number(version) < 1 ? '~' : '^'}${line}` : '*'
-    const max = semver.maxSatisfying(this.#dirs, range)
+    const max = semver.maxSatisfying(this.#dirs, range, { includePrerelease: version != null })
 
     if (!max) {
       return false
